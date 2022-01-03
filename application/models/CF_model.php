@@ -81,9 +81,30 @@ class CF_model extends CI_Model
     $value = max($keputusan);
     $key = array_search($value, $keputusan);
     return $key;
+
+    // return $keputusan;
   }
 
+
   function hitung_cf($data)
+  {
+    $cf_old = 0;
+
+    // printr_pretty($cf_last['cf_hasil']);
+    foreach ($data as $key => $value) {
+      if ($key == 0) {
+        $cf_old = $value->cf_hasil;
+      } else {
+        $cf_old = $cf_old + $value->cf_hasil * (1 - $cf_old);
+      }
+    }
+    $persentase = $cf_old * 100;
+    return $persentase;
+  }
+
+
+  // Formula Default
+  function hitung_cf_backup($data)
   {
 
     $i = 0;
@@ -113,5 +134,6 @@ class CF_model extends CI_Model
     return $persentase;
   }
 }
+
 
 /* End of file ModelName.php */

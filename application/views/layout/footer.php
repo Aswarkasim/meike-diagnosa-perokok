@@ -1,6 +1,7 @@
     </section>
     <!-- /.content -->
     </div>
+    <!-- </div> -->
     <!-- /.content-wrapper -
  Main Footer -->
     <footer class="main-footer">

@@ -11,7 +11,7 @@
             <div class="box-body">
 
                 <a href="<?= base_url('diagnosa'); ?>" class="btn btn-primary"><i class="fa fa-refresh"></i> Diagnosa Baru</a>
-                <a href="<?= base_url('pasien/cetak/' . $pasien->id_pasien); ?>" target="_blank" class="btn btn-warning"><i class="fa fa-print"></i> Cetak</a><br><br>
+                <a href="" class="btn btn-warning"><i class="fa fa-print"></i> Cetak</a><br><br>
 
                 <?php include('kesimpulan.php') ?>
             </div>
@@ -47,7 +47,7 @@
                     <tbody>
 
                         <?php $no = 1;
-                        foreach ($diagnosaPilih as $row) {
+                        foreach ($dataDiagnosa as $row) {
                             if ($row->nilai_cf != 0) { ?>
                                 <tr>
                                     <td><?= $no ?></td>
@@ -95,8 +95,30 @@
 
                         $this->load->model('Data_model', 'DM');
                         $cf_max = 0;
-                        foreach ($dataDiagnosa as $key => $d) {
+                        foreach ($diagnosa as $key => $d) {
+                            // echo $d->kode_penyakit . '<br>';
 
+                            $role = $this->Crud_model->listing('tbl_role');
+
+                            foreach ($role as $r) {
+                                $cek = $this->DM->dataDiagnosaByPasien($pasien->id_pasien, $r->kode_gejala);
+
+                                if (empty($cek)) {
+                                    if ($r->kode_gejala != $d->kode_gejala) {
+                                        $data = [
+                                            'id_pasien'     => $pasien->id_pasien,
+                                            'kode_gejala'   => $r->kode_gejala,
+                                            'nilai_cf'      => 0,
+                                            'cf_hasil'      => 0
+                                        ];
+                                        $this->Crud_model->add('tbl_diagnosa', $data);
+                                    }
+                                    // die('gawat gan');
+                                } else {
+                                    // printr_pretty($cek);
+                                    // die('Lolos gan');
+                                }
+                            }
 
                             $penyakit = $this->DM->listDiagnosaRoleByPenyakit($pasien->id_pasien, $d->kode_penyakit);
 
@@ -124,10 +146,10 @@
                             }
                         }
 
-                        // $data = [
-                        //     'akumulasi_cf' => $cf_max
-                        // ];
-                        // $this->Crud_model->edit('tbl_pasien', 'id_pasien', $id_pasien, $data);
+                        $data = [
+                            'akumulasi_cf' => $cf_max
+                        ];
+                        $this->Crud_model->edit('tbl_pasien', 'id_pasien', $id_pasien, $data);
                         ?>
 
                     </tbody>

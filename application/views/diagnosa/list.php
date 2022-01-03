@@ -16,7 +16,7 @@
                             <th width="10px">NO</th>
                             <th>KODE</th>
                             <th>NAMA</th>
-                            <th>PILIH</th>
+                            <th width="80px">PILIH</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,7 +91,7 @@
                                 <td><?= $row->kode_gejala ?></td>
                                 <td><?= $row->nama_gejala ?></td>
                                 <td>
-                                    <a href="<?= base_url('diagnosa/salah/' . $id_pasien . '/' . $row->id_diagnosa); ?>" class="btn btn-danger">Salah <i class="fa fa-times"></i></a>
+                                    <a href="<?= base_url('diagnosa/salah/' . $id_pasien . '/' . $row->id_diagnosa); ?>" class="btn btn-danger">Batal <i class="fa fa-times"></i></a>
                                 </td>
                             </tr>
                         <?php $no++;

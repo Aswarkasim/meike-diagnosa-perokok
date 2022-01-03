@@ -3,8 +3,11 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">HEADER</li>
       <!-- Optionally, you can add icons to the links -->
-      <li class=""><a href="#"><i class="s"></i> <span>Dashboard</span></a></li>
-
+      <?php if ($this->session->userdata('id_admin') != "") { ?>
+        <li class="<?php if ($this->uri->segment(1) == "dashboard") {
+                      echo "active";
+                    } ?>"><a href="dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+      <?php } ?>
       <li class="<?php if ($this->uri->segment(1) == "petunjuk") {
                     echo "active";
                   } ?>">
@@ -12,12 +15,15 @@
           <span>Petunjuk</span></a>
       </li>
 
-      <li class="<?php if ($this->uri->segment(1) == "diagnosa") {
-                    echo "active";
-                  } ?>">
-        <a href="<?php echo base_url('diagnosa') ?>"><i class="fa fa-safari"></i>
-          <span>Diagnosa</span></a>
-      </li>
+      <?php if ($this->session->userdata('id_admin') == "") { ?>
+
+        <li class="<?php if ($this->uri->segment(1) == "diagnosa") {
+                      echo "active";
+                    } ?>">
+          <a href="<?php echo base_url('diagnosa') ?>"><i class="fa fa-safari"></i>
+            <span>Diagnosa</span></a>
+        </li>
+      <?php } ?>
 
 
       <?php if ($this->session->userdata('id_admin') != "") { ?>
@@ -34,6 +40,13 @@
           <a href="<?php echo base_url('gejala') ?>"><i class="fa fa-puzzle-piece"></i>
             <span>Gejala</span></a>
         </li>
+
+        <li class="<?php if ($this->uri->segment(2) == "pasien") {
+                      echo "active";
+                    }
+                    ?>"><a href="<?php echo base_url('pasien')
+                                  ?>"><i class="fa fa-hotel"></i> <span>Riwayat Konsultasi</span></a></li>
+
 
         <!-- <li class="<?php if ($this->uri->segment(1) == "role") {
                           echo "active";
@@ -67,8 +80,17 @@
   </section>
 
   <!-- Main content -->
-  <section class="content container-fluid">
 
-    <!--------------------------
+  <!-- <style>
+    .bg-img {
+      background-image: url(<?= base_url('assets/img/bg.jpg') ?>);
+
+    }
+  </style>
+
+  <div class="bg-img"> -->
+    <section class="content container-fluid">
+
+      <!--------------------------
         | Your Page Content Here |
         -------------------------->

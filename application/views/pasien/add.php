@@ -29,41 +29,11 @@
                                 <input type="text" class="form-control" name="nama">
                             </div>
                         </div><br>
-                        <div class="row">
-                            <div class="col-md-3"><strong>DESKRIPSI <span class="pull-right">:</span></strong></div>
-                            <div class="col-md-9">
-                                <textarea class="form-control" name="deskripsi" id="editor1" cols="30" rows="10"></textarea>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col-md-3"><strong>AKIBAT <span class="pull-right">:</span></strong></div>
-                            <div class="col-md-9">
-                                <textarea class="form-control" name="akibat" id="editor2" cols="30" rows="10"></textarea>
-                            </div>
-                        </div><br>
+
 
                     </div>
 
                     <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-3"><strong>PENYEBAB <span class="pull-right">:</span></strong></div>
-                            <div class="col-md-9">
-                                <textarea class="form-control" name="penyebab" id="editor4" cols="30" rows="10"></textarea>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col-md-3"><strong>PENANGANAN <span class="pull-right">:</span></strong></div>
-                            <div class="col-md-9">
-                                <textarea class="form-control" name="penanganan" id="editor3" cols="30" rows="10"></textarea>
-                            </div>
-                        </div><br>
-
-                        <!-- <div class="row">
-                    <div class="col-md-3"><strong>LINK VIDEO <small class="text-danger">*</small><span class="pull-right">:</span></strong></div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" name="link_video">
-                    </div>
-                </div><br> -->
 
                     </div>
 

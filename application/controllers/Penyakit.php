@@ -46,8 +46,8 @@ class Penyakit extends CI_Controller
         $valid->set_rules(
             'kode',
             'Kode Penyakit',
-            'required',
-            array('required' => ' %s harus diisi')
+            'required|is_unique[tbl_penyakit.kode_penyakit]',
+            array('required' => ' %s harus diisi', 'is_unique'  => '%s kode penyakit telah digunakan')
         );
         $valid->set_rules(
             'nama',
@@ -72,7 +72,7 @@ class Penyakit extends CI_Controller
                 'deskripsi'       => $i->post('deskripsi'),
                 'akibat'          => $i->post('akibat'),
                 'penyebab'        => $i->post('penyebab'),
-                'link_video'      => $i->post('link_video'),
+                'link_video'      => '',
                 'penanganan'      => $i->post('penanganan')
             );
             $this->Crud_model->add('tbl_penyakit', $data);
@@ -109,7 +109,7 @@ class Penyakit extends CI_Controller
                 'deskripsi'       => $i->post('deskripsi'),
                 'akibat'          => $i->post('akibat'),
                 'penyebab'          => $i->post('penyebab'),
-                'link_video'          => $i->post('link_video'),
+                'link_video'          => '',
                 'penanganan'      => $i->post('penanganan')
             );
             $this->Crud_model->edit('tbl_penyakit', 'kode_penyakit', $kode_penyakit, $data);

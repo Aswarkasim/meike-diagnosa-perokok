@@ -79,7 +79,7 @@ class Diagnosa extends CI_Controller
             'id_pasien'     => $id_pasien,
             'kode_gejala'   => $gejala->kode_gejala,
             'nilai_cf'            => $value,
-            'cf_hasil'            => $value * $gejala->cf
+            'cf_hasil'            => $value * $gejala->nilai_cf
         ];
         $this->Crud_model->add('tbl_diagnosa', $data);
         redirect('diagnosa/list/' . $id_pasien);
@@ -96,30 +96,81 @@ class Diagnosa extends CI_Controller
 
         $this->load->model('CF_model', 'CF');
 
-        $dataDiagnosa = $this->DM->listPilihDiagnosa($id_pasien);
+        $diagnosa = $this->DM->listDiagnosaRole($id_pasien);
+        // printr_pretty($diagnosa);
 
-        $kode_penyakit = $this->CF->getValuePenyakit($id_pasien);
-        $penyakit = $this->Crud_model->listingOne('tbl_penyakit', 'kode_penyakit', $kode_penyakit);
+        $max_cf = 0;
+        $kp = '';
+        $nama_p = '';
 
-        $cf = $this->CF->hitung_cf($dataDiagnosa);
+        foreach ($diagnosa as $d) {
+            // echo $d->kode_penyakit . '<br>';
 
-        // print_r($cf);
-        // die;
+            $role = $this->Crud_model->listing('tbl_role');
 
+            foreach ($role as $r) {
+                if ($r->kode_gejala != $d->kode_gejala) {
+                    $data = [
+                        'id_pasien'     => $id_pasien,
+                        'kode_gejala'           => $r->kode_gejala,
+                        'kode_Penyakit'   => $r->kode_penyakit,
+                        'nilai_cf'      => 0,
+                        'cf_hasil'      => 0
+                    ];
+                    $this->Crud_model->add('tbl_diagnosa', $data);
+                }
+            }
+
+            $penyakit = $this->DM->listDiagnosaRoleByPenyakit($id_pasien, $d->kode_penyakit);
+
+            $cf = $this->CF->hitung_cf($penyakit);
+            // printr_pretty($cf);
+            if ($max_cf <= $cf) {
+                $max_cf = $cf;
+                $kp = $d->kode_penyakit;
+            }
+        }
+
+
+        // lanjutkan nanti tapi alngsug redirect klo dapatm hasilnya
+        // die($cf . $kp);
+
+        $peny_hasil = $this->Crud_model->listingOne('tbl_penyakit', 'kode_penyakit', $kp);
         $dataPasien = [
-            'akumulasi_cf'     => $cf,
-            'kode_penyakit'    => $kode_penyakit,
-            'nama_penyakit'    => $penyakit->nama_penyakit,
+            'akumulasi_cf'     => $max_cf,
+            'kode_penyakit'    => $kp,
+            'nama_penyakit'    => $peny_hasil->nama_penyakit,
         ];
 
         $this->Crud_model->edit('tbl_pasien', 'id_pasien', $id_pasien, $dataPasien);
 
+        redirect('diagnosa/hasil/' . $id_pasien);
+    }
+
+    function hasil($id_pasien)
+    {
+        $this->load->model('CF_model', 'CF');
+        $dataDiagnosa = $this->DM->listGroupDiagnosa($id_pasien);
+        $diagnosaPilih = $this->DM->listPilihDiagnosa($id_pasien);
+
+        // $kode_penyakit = $this->CF->getValuePenyakit($id_pasien);
+        // print_r($kode_penyakit);
+        // die;
         $pasien = $this->Crud_model->listingOne('tbl_pasien', 'id_pasien', $id_pasien);
+        $penyakit = $this->Crud_model->listingOne('tbl_penyakit', 'kode_penyakit', $pasien->kode_penyakit);
+
+        $diagnosa = $this->DM->listDiagnosaRole($id_pasien);
+
+
+
         $data = array(
             'title'         => 'Hasil Diagnosa',
             'penyakit'      => $penyakit,
-            'pasien'      => $pasien,
+            'pasien'         => $pasien,
+            'id_pasien'      => $id_pasien,
             'dataDiagnosa'  => $dataDiagnosa,
+            'diagnosaPilih'  => $diagnosaPilih,
+            'diagnosa'      => $diagnosa,
             'isi'           => 'diagnosa/hasil',
         );
         $this->load->view('layout/wrapper', $data, FALSE);

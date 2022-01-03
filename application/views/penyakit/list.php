@@ -21,10 +21,8 @@
             <th>KODE</th>
             <th width="200">NAMA</th>
             <th>DESKRIPSI</th>
-            <th>PENYEBAB</th>
-            <th>AKIBAT</th>
             <th>PENANGANAN</th>
-            <th>LINK VIDEO</th>
+            <!-- <th>LINK VIDEO</th> -->
             <th width="100px"></th>
           </tr>
         </thead>
@@ -35,12 +33,10 @@
             <tr>
               <td><?= $no ?></td>
               <td><?= $row->kode_penyakit ?></td>
-              <td><a href="<?= base_url('penyakit/detail/' . $row->kode_penyakit); ?>"><strong><?= $row->nama_penyakit ?></strong></a></td>
+              <td><a href="<?= base_url('penyakit/detail/' . $row->kode_penyakit); ?>"><?= $row->nama_penyakit ?></a></td>
               <td><?= character_limiter($row->deskripsi, 100) ?></td>
-              <td><?= character_limiter($row->penyebab, 100) ?></td>
-              <td><?= character_limiter($row->akibat, 100) ?></td>
               <td><?= character_limiter($row->penanganan, 100) ?></td>
-              <td><a href="<?= $row->link_video ?>" target="blank">Lihat Video</a></td>
+              <!-- <td><a href="<?= $row->link_video ?>" target="blank">Lihat Video</a></td> -->
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-danger btn-flat"><i class="fa fa-cogs"></i></button>

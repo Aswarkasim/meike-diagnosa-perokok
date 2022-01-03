@@ -28,7 +28,7 @@ class Auth extends CI_Controller
 
         if ($valid->run() === FALSE) {
             $data = array(
-                'title'        => 'SISTEM PAKAR | Diagnosa Penyakit Malaria',
+                'title'        => 'SISTEM PAKAR | DIAGNOSA PENYAKIT PADA PEROKOK',
                 'isi'         => 'auth/login'
             );
             $this->load->view('layout/wrapper', $data, FALSE);
@@ -45,7 +45,7 @@ class Auth extends CI_Controller
                 $s->set_userdata('username', $cek_login->username);
                 $s->set_userdata('nama_admin', $cek_login->nama_admin);
 
-                redirect('diagnosa', 'refresh');
+                redirect('dashboard', 'refresh');
             } else {
                 //jika tidak ditemukan
                 $this->session->set_flashdata('msg', 'Username atau password salah');
