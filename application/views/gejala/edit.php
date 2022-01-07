@@ -29,6 +29,14 @@
                                 <input type="text" class="form-control" name="nama" value="<?= $gejala->nama_gejala ?>">
                             </div>
                         </div><br>
+
+                        <div class="row">
+                            <div class="col-md-3"><strong>NILAI CF <small class="text-danger">*</small><span class="pull-right">:</span></strong></div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" value="<?= $gejala->nilai_cf; ?>" name="nilai_cf">
+                            </div>
+                        </div><br>
+
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-9">

@@ -57,7 +57,8 @@ class Gejala extends CI_Controller
             $i = $this->input;
             $data = array(
                 'kode_gejala'   => $i->post('kode'),
-                'nama_gejala'   => $i->post('nama')
+                'nama_gejala'   => $i->post('nama'),
+                'nilai_cf'   => $i->post('nilai_cf')
             );
             $this->Crud_model->add('tbl_gejala', $data);
             $this->session->set_flashdata('msg', ' Data telah ditambah');
@@ -89,6 +90,7 @@ class Gejala extends CI_Controller
             $i = $this->input;
             $data = array(
                 'kode_gejala'   => $i->post('kode_gejala'),
+                'nilai_cf'   => $i->post('nilai_cf'),
                 'nama_gejala'   => $i->post('nama')
             );
             $this->Crud_model->edit('tbl_gejala', 'kode_gejala', $kode_gejala, $data);

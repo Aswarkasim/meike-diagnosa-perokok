@@ -20,6 +20,7 @@
             <th width="100px">NO</th>
             <th>KODE</th>
             <th>NAMA</th>
+            <th>NILAI CF</th>
             <th></th>
           </tr>
         </thead>
@@ -31,6 +32,7 @@
               <td><?= $no ?></td>
               <td><?= $row->kode_gejala ?></td>
               <td><?= $row->nama_gejala ?></td>
+              <td><?= $row->nilai_cf ?></td>
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-danger btn-flat"><i class="fa fa-cogs"></i></button>
