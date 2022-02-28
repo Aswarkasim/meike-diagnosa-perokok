@@ -93,7 +93,7 @@ class CF_model extends CI_Model
     // printr_pretty($cf_last['cf_hasil']);
     foreach ($data as $key => $value) {
       if ($key == 0) {
-        $cf_old = $value->cf_hasil;
+        $cf_old =  $value->cf_hasil;
       } else {
         $cf_old = $cf_old + $value->cf_hasil * (1 - $cf_old);
       }

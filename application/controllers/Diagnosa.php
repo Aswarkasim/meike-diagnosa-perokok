@@ -60,13 +60,16 @@ class Diagnosa extends CI_Controller
     {
         switch ($value) {
             case '1':
-                $value = 0.6;
+                $value = 0.4;
                 break;
 
             case '2':
-                $value = 0.8;
+                $value = 0.6;
                 break;
             case '3':
+                $value = 0.8;
+                break;
+            case '4':
                 $value = 1;
                 break;
 

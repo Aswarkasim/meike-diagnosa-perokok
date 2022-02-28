@@ -43,9 +43,10 @@
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/1'); ?>">Kemungkinan Besar</a></li>
-                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/2'); ?>">Hampir Pasti</a></li>
-                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/3'); ?>">Pasti</a></li>
+                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/1'); ?>">Kurang Yakin</a></li>
+                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/2'); ?>">Cukup Yakin</a></li>
+                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/3'); ?>">Kadang-kadang</a></li>
+                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/4'); ?>">Kurang Yakin</a></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -89,7 +90,7 @@
                             <tr>
                                 <td><?= $no ?></td>
                                 <td><?= $row->kode_gejala ?></td>
-                                <td><?= $row->nama_gejala ?></td>
+                                <td><?= $row->nama_gejala . ' (' . $row->cf_hasil . ')'; ?></td>
                                 <td>
                                     <a href="<?= base_url('diagnosa/salah/' . $id_pasien . '/' . $row->id_diagnosa); ?>" class="btn btn-danger">Batal <i class="fa fa-times"></i></a>
                                 </td>
