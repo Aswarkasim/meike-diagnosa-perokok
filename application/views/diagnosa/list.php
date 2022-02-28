@@ -44,9 +44,9 @@
                                             </button>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/1'); ?>">Kurang Yakin</a></li>
-                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/2'); ?>">Cukup Yakin</a></li>
-                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/3'); ?>">Kadang-kadang</a></li>
-                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/4'); ?>">Kurang Yakin</a></li>
+                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/2'); ?>">Kadang-kadang</a></li>
+                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/3'); ?>">Cukup Yakin</a></li>
+                                                <li><a href="<?= base_url('diagnosa/pilih/' . $id_pasien . '/' . $row->kode_gejala . '/4'); ?>">Yakin</a></li>
                                             </ul>
                                         </div>
                                     </td>
